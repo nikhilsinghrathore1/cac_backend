@@ -8,7 +8,7 @@
                ],
    "functions": {
     "api/**/*.js": {
-      "maxDuration": 10 // Adjust this value as needed
+      "maxDuration": 20 // Adjust this value as needed
     }
   },
                "routes": [
