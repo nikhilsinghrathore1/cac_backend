@@ -11,7 +11,7 @@ const PORT = 3001;
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-const allowedOrigins = ['https://BootCamp.vercel.app', 'http://localhost:3000'];
+const allowedOrigins = ['https://BootCamp.vercel.app', 'http://localhost:3000' ,'*'];
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -23,6 +23,19 @@ app.use(cors({
     return callback(null, true);
   }
 }));
+
+app.get("/dashboard",async(req:Request,res:Response)=>{
+               try{
+                              const data = await axios.get("https://api.socialverseapp.com/admin/dashboard")
+
+                              res.json(data.data)
+               }
+               catch(e){
+                              console.log(e)
+                              res.send("not done ")
+               }
+
+})
 
 // Serve static files from the 'uploads' directory
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
